@@ -1,0 +1,19 @@
+import subprocess
+
+# List of commands with placeholders for --restart
+commands = [
+    "python3 main.py --player=agent --train=a --screen=easy --speed=fast --steps=500 --restart={restart} --output=text",
+    "python3 main.py --player=agent --train=a --screen=medium --speed=fast --steps=500 --restart={restart} --output=text",
+    "python3 main.py --player=agent --train=a --screen=hard --speed=fast --steps=500 --restart={restart} --output=text"
+]
+
+# Loop through restart values from 1 to 8
+for i in range(5):
+    for restart in range(1, 9):
+        for command in commands:
+            # Format command with current restart value
+            formatted_command = command.format(restart=restart)
+            print(f"Running: {formatted_command}")
+            
+            # Run the command
+            subprocess.run(formatted_command, shell=True)
